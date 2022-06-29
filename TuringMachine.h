@@ -4,6 +4,8 @@
 #include <vector>
 #include "State.h"
 
+class State;
+
 class TuringMachine {
 private:
     std::vector<State> States;
@@ -12,8 +14,8 @@ private:
 
     friend class State;
 public:
-    TuringMachine(std::vector<State> states, const std::string &alphabet, const int currentState);
-    bool process(const std::string& word);
+    TuringMachine(std::vector<State> states, std::string alphabet, const int currentState);
+    bool process(const std::string word);
     bool changeState(char readCharacter, char *writeCharacter, char *direction);
 
     void printTape(char *tape, int pos);

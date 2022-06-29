@@ -1,17 +1,18 @@
-#ifndef TURINGMACHINE_STATE_H
-#define TURINGMACHINE_STATE_H
+#ifndef STATE_H
+#define STATE_H
 #include <vector>
 #include "Transition.h"
 #include "TuringMachine.h"
 
-class State {
+class TuringMachine;
+
+class State{
 private:
     std::vector<Transition> Transitions;
     bool isFinal;
-
 public:
-    State(const std::vector<Transition> &transitions, bool isFinal);
-    bool checkTransitions(TuringMachine &tm, char readCharacter, Transition *transition);
+    State(std::vector<Transition> transitions, bool isFinal);
+    bool checkTransitions(TuringMachine &tm, char readCharacter, Transition &transition);
     bool getIsFinal();
 };
 

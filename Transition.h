@@ -1,5 +1,5 @@
-#ifndef TURINGMACHINE_TRANSITION_H
-#define TURINGMACHINE_TRANSITION_H
+#ifndef TRANSITION_H
+#define TRANSITION_H
 
 class Transition {
 private:

@@ -9,13 +9,12 @@ TuringMachine::TuringMachine(std::vector<State> states, std::string alphabet, co
 
 bool TuringMachine::process(const std::string word){
     char tape[50], auxWrite, auxDir;
-    int cursor = 1;
+    int cursor = 1; // "Ponteiro" auxiliar que anda na fita
     currentState = 0;
     sprintf(tape,"*%s$", word.c_str());
     printTape(tape, cursor);
-    std::cout << Alphabet << std::endl;
     while(changeState(tape[cursor], &auxWrite, &auxDir)){
-        tape[cursor] = auxWrite;
+        tape[cursor] = auxWrite; //Escreve na fita de acordo com a transicao encontrada
         if(auxDir == 'D') cursor++;
         else cursor--;
         printTape(tape, cursor);
@@ -39,7 +38,6 @@ void TuringMachine::printTape(char* tape, int pos){
 bool TuringMachine::changeState(char readCharacter, char *writeCharacter, char *direction){
     Transition auxTransition;
     if(States[currentState].checkTransitions(*this, readCharacter, auxTransition)) {
-        std::cout << currentState << std::endl;
         *writeCharacter = auxTransition.getWCharacter();
         *direction = auxTransition.getDirection();
         return true;

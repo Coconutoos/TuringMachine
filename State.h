@@ -8,10 +8,11 @@ class TuringMachine;
 
 class State{
 private:
-    std::vector<Transition> Transitions;
     bool isFinal;
 public:
+    std::vector<Transition> Transitions;
     State(std::vector<Transition> transitions, bool isFinal);
+    State(bool isFinal);
     bool checkTransitions(TuringMachine &tm, char readCharacter, Transition &transition);
     bool getIsFinal();
 };

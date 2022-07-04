@@ -1,6 +1,5 @@
 #include "TuringMachine.h"
 #include <utility>
-#include <cstring>
 #include <iostream>
 
 
@@ -8,11 +7,13 @@ TuringMachine::TuringMachine(std::vector<State> states, std::string alphabet, co
                             : States(std::move(states)), Alphabet(std::move(alphabet)), currentState(currentState){}
 
 
-bool TuringMachine::process(const std::string word) {
-    char *tape, auxWrite, auxDir;
+bool TuringMachine::process(const std::string word){
+    char tape[50], auxWrite, auxDir;
     int cursor = 1;
+    currentState = 0;
     sprintf(tape,"*%s$", word.c_str());
     printTape(tape, cursor);
+    std::cout << Alphabet << std::endl;
     while(changeState(tape[cursor], &auxWrite, &auxDir)){
         tape[cursor] = auxWrite;
         if(auxDir == 'D') cursor++;
@@ -37,14 +38,10 @@ void TuringMachine::printTape(char* tape, int pos){
 
 bool TuringMachine::changeState(char readCharacter, char *writeCharacter, char *direction){
     Transition auxTransition;
-
-    if(Alphabet.find(readCharacter) == std::string::npos)
-        return false;
-
     if(States[currentState].checkTransitions(*this, readCharacter, auxTransition)) {
+        std::cout << currentState << std::endl;
         *writeCharacter = auxTransition.getWCharacter();
         *direction = auxTransition.getDirection();
-
         return true;
     }
     return false;

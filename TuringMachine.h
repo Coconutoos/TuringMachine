@@ -8,12 +8,14 @@ class State;
 
 class TuringMachine {
 private:
-    std::vector<State> States;
-    std::string Alphabet;
-    int currentState;
 
+
+    int currentState;
+    std::string Alphabet;
     friend class State;
 public:
+
+    std::vector<State> States;
     TuringMachine(std::vector<State> states, std::string alphabet, const int currentState);
     bool process(const std::string word);
     bool changeState(char readCharacter, char *writeCharacter, char *direction);

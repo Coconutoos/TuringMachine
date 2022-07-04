@@ -20,23 +20,14 @@ void App::executeOption(int option){
             carregaMaquina();
             break;
         case 2:
-            {
-            while(1) {
-                std::string teste;
-                std::cin >> teste;
-                if (TM->process(teste)) std::cout << "ACEITA" << std::endl;
-                else std::cout << "REJEITA" << std::endl;
-            }
-        }
+            processaPalavra();
         default:
             break;
     }
 }
 
 void App::carregaMaquina() {
-    if(this->TM != nullptr){
-        delete this->TM;
-    }
+    delete this->TM;
     std::string fileName;
     std::cout << "Digite o nome do arquivo: " << std::endl;
     std::cin >> fileName;
@@ -100,7 +91,10 @@ std::vector<int> App::lerFinais(){
 }
 
 void App::processaPalavra(){
-
+    std::string teste;
+    std::cin >> teste;
+    if (TM->process(teste)) std::cout << "ACEITA" << std::endl;
+    else std::cout << "REJEITA" << std::endl;
 }
 
 void App::printMenu(){
